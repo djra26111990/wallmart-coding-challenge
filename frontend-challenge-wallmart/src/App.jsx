@@ -1,11 +1,10 @@
-import { useState } from 'react'
+import React from 'react'
+import { Home } from '../src/views/Home'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="App">
-      hello world
+    <div>
+      <Home />
     </div>
   )
 }
