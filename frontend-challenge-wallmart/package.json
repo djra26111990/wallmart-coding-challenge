@@ -1,18 +1,86 @@
 {
   "name": "frontend-challenge-wallmart",
   "private": true,
-  "version": "0.0.0",
+  "description": "Frontend React App to accomplish with the Wallmart Coding Challenge",
+  "version": "1.0.0",
+  "author": "Daniel Rivas",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:cov": "jest --coverage",
+    "test": "jest"
   },
   "dependencies": {
+    "axios": "^0.26.1",
+    "dotenv": "^16.0.0",
+    "lodash.debounce": "^4.0.8",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/plugin-syntax-jsx": "^7.16.7",
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "@testing-library/dom": "^8.11.3",
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.4",
+    "@testing-library/user-event": "^13.5.0",
     "@vitejs/plugin-react": "^1.0.7",
-    "vite": "^2.8.0"
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
+    "autoprefixer": "^10.4.2",
+    "axios-mock-adapter": "^1.20.0",
+    "babel-jest": "^27.5.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-react-app": "^10.0.1",
+    "babel-preset-vite": "^1.0.4",
+    "enzyme": "^3.11.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.5.1",
+    "jest-circus": "^27.5.1",
+    "jest-scss-transform": "^1.0.1",
+    "jest-watch-typeahead": "^1.0.0",
+    "postcss": "^8.4.8",
+    "tailwindcss": "^3.0.23",
+    "vite": "^2.8.0",
+    "vite-plugin-environment": "^1.1.0"
+  },
+  "jest": {
+    "verbose": true,
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/jest/mocks/jest.setup.js"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*.d.ts"
+    ],
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+      "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+    ],
+    "testEnvironment": "jsdom",
+    "transform": {
+      "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.scss$": "jest-scss-transform",
+      "^.+\\.css$": "<rootDir>/jest/mocks/cssMock.js"
+    },
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$",
+      "^.+\\.module\\.(css|sass|scss)$"
+    ],
+    "moduleNameMapper": {
+      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+    },
+    "watchPlugins": [
+      "jest-watch-typeahead/filename",
+      "jest-watch-typeahead/testname"
+    ],
+    "resetMocks": true
   }
 }
