@@ -1,0 +1,46 @@
+version: "3"
+
+services:
+  frontend:
+    stdin_open: true
+    build:
+      context: ./frontend-challenge-wallmart
+      dockerfile: Dockerfile
+    image: wallmart-frontend-challenge:1.0.0
+    hostname: frontend
+    container_name: wallmart-frontend-challenge
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "80:80"
+    depends_on:
+     - backend
+    networks:
+      wallmart_challenge_net:
+        ipv4_address: 172.16.238.10
+
+  backend:
+    stdin_open: true
+    build:
+      context: ./backend-challenge-wallmart
+      dockerfile: Dockerfile
+    image: wallmart-backend-challenge:1.0.0
+    hostname: frontend
+    container_name: wallmart-backend-challenge
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      wallmart_challenge_net:
+        ipv4_address: 172.16.238.11
+
+networks:
+  wallmart_challenge_net:
+    driver: bridge
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.238.0/24
+          gateway: 172.16.238.1
+        - subnet: 2001:3984:3989::/64
+          gateway: 2001:3984:3989::1
