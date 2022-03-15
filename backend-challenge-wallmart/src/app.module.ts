@@ -1,10 +1,18 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import InfraestructureModule from './infraestructure/infraestructure.module';
+import DomainModule from './domain/domain.module';
+import { DynamicModule, Module } from '@nestjs/common';
+import ApplicationModule from './application/application.module';
 
-@Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
-})
-export class AppModule {}
+@Module({})
+export default class AppModule {
+  static foorRoot(setting: any): DynamicModule {
+    return {
+      module: AppModule,
+      imports: [
+        DomainModule,
+        ApplicationModule,
+        InfraestructureModule.foorRoot(setting),
+      ],
+    };
+  }
+}
